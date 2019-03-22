@@ -1,0 +1,205 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Beamer Presentation
+% LaTeX Template
+% Version 1.0 (10/11/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND THEMES
+%----------------------------------------------------------------------------------------
+
+\documentclass{beamer}
+
+\mode<presentation> {
+
+% The Beamer class comes with a number of default slide themes
+% which change the colors and layouts of slides. Below this is a list
+% of all the themes, uncomment each in turn to see what they look like.
+
+%\usetheme{default}
+%\usetheme{AnnArbor}
+%\usetheme{Antibes}
+%\usetheme{Bergen}
+%\usetheme{Berkeley}
+%\usetheme{Berlin}
+%\usetheme{Boadilla}
+%\usetheme{CambridgeUS}
+%\usetheme{Copenhagen}
+%\usetheme{Darmstadt}
+%\usetheme{Dresden}
+%\usetheme{Frankfurt}
+%\usetheme{Goettingen}
+%\usetheme{Hannover}
+%\usetheme{Ilmenau}
+%\usetheme{JuanLesPins}
+%\usetheme{Luebeck}
+\usetheme{Madrid}
+%\usetheme{Malmoe}
+%\usetheme{Marburg}
+%\usetheme{Montpellier}
+%\usetheme{PaloAlto}
+%\usetheme{Pittsburgh}
+%\usetheme{Rochester}
+%\usetheme{Singapore}
+%\usetheme{Szeged}
+%\usetheme{Warsaw}
+
+% As well as themes, the Beamer class has a number of color themes
+% for any slide theme. Uncomment each of these in turn to see how it
+% changes the colors of your current slide theme.
+
+%\usecolortheme{albatross}
+%\usecolortheme{beaver}
+%\usecolortheme{beetle}
+%\usecolortheme{crane}
+%\usecolortheme{dolphin}
+%\usecolortheme{dove}
+%\usecolortheme{fly}
+%\usecolortheme{lily}
+%\usecolortheme{orchid}
+%\usecolortheme{rose}
+%\usecolortheme{seagull}
+%\usecolortheme{seahorse}
+%\usecolortheme{whale}
+%\usecolortheme{wolverine}
+
+%\setbeamertemplate{footline} % To remove the footer line in all slides uncomment this line
+%\setbeamertemplate{footline}[page number] % To replace the footer line in all slides with a simple slide count uncomment this line
+
+%\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
+}
+
+\usepackage{graphicx} % Allows including images
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title[]{Transmit Antenna Selection in a Massive MIMO System using convex optimization} % The short title appears at the bottom of every slide, the full title is only on the title page
+
+\author[K Samhitha , G Anusha] % (optional, for multiple authors)
+{K Samhitha\inst{1} \and G Anusha\inst{2}}
+\institute[IITH] % (optional)
+{
+  \inst{1}%
+  EE16BTECH11019\\
+  \and
+  \inst{2}%
+  EE16BTECH11011\\
+  }
+
+\date{\today} % Date, can be changed to a custom date
+
+\begin{document}
+
+\begin{frame}
+\titlepage % Print the title page as the first slide
+\end{frame}
+
+
+
+%----------------------------------------------------------------------------------------
+%	PRESENTATION SLIDES
+%----------------------------------------------------------------------------------------
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Introduction}
+Massive MIMO, also known as very-large MIMO or large-scale antenna array deploys more antennas by possibly orders of magnitude than conventional MIMO.\\
+A major limiting factor in deployment of MIMO systems is the cost of multiple analog chains such as low noise amplifiers, mixers and analog-to-digital converters.\\
+Antenna selection at the transmitter is a powerful technique that reduces the number of analog chains required, yet preserving the diversity benefits obtained from the massive MIMO.
+The selection criteria can be maximization of channel capacity, signal-to-noise ratio at the receiver or minimization of bit-error-rate. \\
+\end{frame}
+
+
+\begin{frame}
+\frametitle{System Model Description and Problem Statement}
+We consider the downlink of a base station(BS) communicating with K single-antenna users.\\
+The base station employs M transmit antennas. Perfect channel station information over all antennas is assumed to be known at the BS.\\
+Based on the CSI, the best N(K$<$N$\leq$M) antennas are select out the M antennas according to some criteria to serve K users.\\
+The signal model of the system is
+\begin{center}
+\begin{equation*} Y=Hd+n \end{equation*}
+\end{center}
+where d denotes the transmitted data intended for all K user. H represents the channel vector of size K x M from the BS to all user. n is AWGN with zero-mean and its variance is {\sigma^{2}}_{n}I.
+
+\end{frame}
+
+
+
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{System Model Description and Problem Statement}
+The optimum algorithm to select N of M antennas is exhaustively searching over all possible antenna combination, i.e. calculating {{C^{N}}_{M}} \ determinants\ for\ each\ channel\ instance. \\
+our selection method is based on maximizing total receive power of all users.\\ Our optimization problem is
+\begin{center}
+\begin{equation*} \text{maximize tr} (H_{N}^{+}H_{N}) \end{equation*}
+
+\end{center}
+Where {H}_{N} \ is \ the \ channel \ from \ the \ selected \ N \ antennas \ at \ the \ BS \ to \ K \ users,\\
+while subscript (N) denotes N columns are selected out of M in the full propagation matrix H,  tr(H_{N}^{+}H_{N}) \ means \ total \ receive \ power \ of \ all \ users.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Antenna Selection Via Convex Optimization}
+For antenna selection, we introduce an M x M, M diagonal matrix \Phi \text{ with the diagonal elements } {\phi}_{i}(i=1,2,…,M), \\ which are binary variables and indicate the i^{th} \text{ antenna is selected or not.}\\
+At the same time it must be satisfied\\
+\begin{equation} {\Sigma}^{M}_{i=1}\phi_{i}= N,\end{equation}\text{ \ i.e. \ N \ transmit \ antennas \ are \ selected. \ Via \ selection \ matrix}\\
+\textbf{\Phi}, our \ optimization \ problem \ can \ be \ described \ as \\
+\begin{align*} \max\limits_{\Phi} \qquad & \text{tr}(H^{+}\Phi H)\\ 
+subject \ to \qquad & \phi_{j}\in\{0, 1\} \\ &\sum\nolimits_{i=1}^{M}\phi_{i}= N \end{align*}
+
+
+\end{frame}
+
+
+%------------------------------------------------
+
+
+
+\begin{frame}
+\frametitle{Cont..}
+For massive MIMO where M can be more than one hundred, the exhaustive search can hardly be done due to an extremely large number of possible antenna combination. We can use convex optimization method to solve. Note above constraint of \phi_i \ \epsilon \ \text{\{0,1\} is not convex and other constraints are all convex.} \\
+So the original problem can be relaxed to the following
+
+\begin{align*} \max\limits_{\Phi}\text{imize} \qquad & \text{tr}(H^{+}\Phi H)\\ \text{subject to} \quad & 0\leq\phi_{i}\leq 1 \\ &\sum\nolimits_{i=1}^{M}\phi_{i}=N \end{align*}
+
+\end{frame}
+
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}{Cont..}
+The original problem thus becomes a convex optimization problem solvable in  SeDuMi or CVX.\\
+This relaxation yields a fractional solution of \phi_{i},\\
+from which the N largest ones are selected, and their indices represent the selected N antenna at the base station.\\
+Simulation results show that the optimal solution \phi_i \\
+of the problem via the software CVX is just one or zero and not fractional solution. It is interesting, and it indicates that our optimization problem is simple and can be tractable.
+    
+\end{frame}
+
+
+
+
+
+
+
+\begin{frame}{And last}
+\begin{center}
+    Thank You
+\end{center}
+\end{frame}
+\end{document} 
