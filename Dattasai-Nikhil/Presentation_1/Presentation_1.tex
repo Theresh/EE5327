@@ -1,0 +1,293 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Beamer Presentation
+% LaTeX Template
+% Version 1.0 (10/11/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND THEMES
+%----------------------------------------------------------------------------------------
+
+\documentclass{beamer}
+
+\mode<presentation> {
+
+% The Beamer class comes with a number of default slide themes
+% which change the colors and layouts of slides. Below this is a list
+% of all the themes, uncomment each in turn to see what they look like.
+
+%\usetheme{default}
+%\usetheme{AnnArbor}
+%\usetheme{Antibes}
+%\usetheme{Bergen}
+%\usetheme{Berkeley}
+%\usetheme{Berlin}
+%\usetheme{Boadilla}
+%\usetheme{CambridgeUS}
+%\usetheme{Copenhagen}
+%\usetheme{Darmstadt}
+%\usetheme{Dresden}
+%\usetheme{Frankfurt}
+%\usetheme{Goettingen}
+%\usetheme{Hannover}
+%\usetheme{Ilmenau}
+%\usetheme{JuanLesPins}
+%\usetheme{Luebeck}
+\usetheme{Madrid}
+%\usetheme{Malmoe}
+%\usetheme{Marburg}
+%\usetheme{Montpellier}
+%\usetheme{PaloAlto}
+%\usetheme{Pittsburgh}
+%\usetheme{Rochester}
+%\usetheme{Singapore}
+%\usetheme{Szeged}
+%\usetheme{Warsaw}
+
+% As well as themes, the Beamer class has a number of color themes
+% for any slide theme. Uncomment each of these in turn to see how it
+% changes the colors of your current slide theme.
+
+%\usecolortheme{albatross}
+%\usecolortheme{beaver}
+%\usecolortheme{beetle}
+%\usecolortheme{crane}
+%\usecolortheme{dolphin}
+%\usecolortheme{dove}
+%\usecolortheme{fly}
+%\usecolortheme{lily}
+%\usecolortheme{orchid}
+%\usecolortheme{rose}
+%\usecolortheme{seagull}
+%\usecolortheme{seahorse}
+%\usecolortheme{whale}
+%\usecolortheme{wolverine}
+
+%\setbeamertemplate{footline} % To remove the footer line in all slides uncomment this line
+%\setbeamertemplate{footline}[page number] % To replace the footer line in all slides with a simple slide count uncomment this line
+
+%\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
+}
+
+\usepackage{graphicx} % Allows including images
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title[Short title]{Optimization } % The short title appears at the bottom of every slide, the full title is only on the title page
+
+\author{MA17BTECH11002,MA17BTECH11007} % Your name
+\institute[UCLA] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+{
+Convexity of functions. \\ % Your institution for the title page
+\medskip
+\textit{Problem 1.5} % Your email address
+}
+\date{February 20, 2019} % Date, can be changed to a custom date
+
+\begin{document}
+
+\begin{frame}
+\titlepage % Print the title page as the first slide
+\end{frame}
+%convex function slide.
+\begin{frame}
+\frametitle{Convex functions} % Table of contents slide, comment this block out to remove it
+ % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+\begin{block}{Definition}
+A real-valued function defined on an n-dimensional interval is said to be convex if the line segment between any two points on the graph of the function lies above or on the graph.
+\end{block}
+
+A single variable function f is said to be convex if:\newline
+
+\quad \quad \quad \quad \quad  $f[$\lambda$x+(1-\lambda)y] \quad \leq  \quad $\lambda$f(x)+(1-\lambda)f(y)$\newline
+
+\quad \quad \quad \quad \quad \quad\quad \quad \quad \quad \quad \quadfor for 0$<$$\lambda$$<$1\newline
+
+Examples: $x^{2}$,$x^{3}$ in $R^{+}$,$e^{x}$ etc.
+
+%----------------------------------------------------------------------------------------
+%	PRESENTATION SLIDES
+%----------------------------------------------------------------------------------------
+
+%------------------------------------------------
+
+\end{frame}
+%concave function slide.
+\begin{frame}
+\frametitle{Concave functions} % Table of contents slide, comment this block out to remove it
+ % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+\begin{block}{Definition}
+A real-valued function defined on an n-dimensional interval is said to be concave if the line segment between any two points on the graph of the function lies below or on the graph.
+\end{block}
+
+A single variable function f is said to be concave if:\newline
+
+\quad \quad \quad \quad \quad  $f[$\lambda$x+(1-\lambda)y] \quad \geq  \quad $\lambda$f(x)+(1-\lambda)f(y)$\newline
+
+\quad \quad \quad \quad \quad \quad\quad \quad \quad \quad \quad \quadfor for 0$<$$\lambda$$<$1\newline
+
+Examples: $x^{3}$ in $R^{-}$,lnx etc.
+
+%----------------------------------------------------------------------------------------
+%	PRESENTATION SLIDES
+%----------------------------------------------------------------------------------------
+
+%------------------------------------------------
+
+\end{frame}
+%problem statement.
+\begin{frame}
+\frametitle{Problem}
+Let f(z) =xy , z$\in$$R^{2}$\newline
+
+Sketch f(z) and deduce wheather it is convex.Theoritically explain your observation.
+
+\end{frame}
+
+%solution.
+
+%------------------------------------------------
+
+\begin{frame}[fragile] % Need to use the fragile option when verbatim is used in the slide
+\frametitle{Python Code}
+\begin{example}
+\begin{verbatim}
+    import numpy as np
+    import matplotlib.pylab as plt
+    from mpl_toolkits.mplot3d import Axes3D
+    def fnc(X):
+        return (X[0]* X[1])
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection=Axes3D.name)
+    x = y = np.linspace(-50,50,100)
+   
+\end{verbatim}
+\end{example}
+\end{frame}
+
+
+\begin{frame}[fragile] % Need to use the fragile option when verbatim is used in the slide
+\frametitle{Python Code}
+\begin{example}
+\begin{verbatim} 
+    X, Y = np.meshgrid(x, y)
+    Z = fnc([X,Y])
+    ax.plot_surface(X, Y, Z)
+    ax.set_xlabel('X Label')
+    ax.set_ylabel('Y Label')
+    ax.set_zlabel('Z Label')
+    ax.view_init(elev=15, azim=-118)
+    plt.show()
+\end{verbatim}
+\end{example}
+\end{frame}
+
+%------------------------------------------------
+
+
+\begin{frame}
+\frametitle{Solution}
+
+The function f(z) is neither convex nor concave as a whole because it behaves as a convex function in certain regions and concave in certain regions.\newline
+
+If we look at the two quadrants where $x>0$ , $y>0$ and $x<0$ , $y<0$ we can clearly observe by the below figure that at some points a straight line drawn between two points is always above the graph.\newline
+
+Similarly,if we look at the two quadrants where $x>0$ , $y<0$ and $x<0$ , $y>0$ we can clearly observe by the below figure that at some points a straight line drawn between two points is always below the graph.
+
+
+
+\end{frame}
+
+
+%graphs of the functions.
+\begin{frame}
+
+\begin{figure}
+\includegraphics[width=0.8\linewidth]{xyconvex.JPG}
+\end{figure}
+    
+\end{frame}
+%graphs of the functions.
+\begin{frame}
+
+\begin{figure}
+\includegraphics[width=0.8\linewidth]{xyconcave.JPG}
+\end{figure}
+    
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+
+The notion of mathematical definition for single variable can be extended to n-dimentional variables where x=($x_{1}$,$x_{2}$,$x_{3}$,....$x_{n}$);y=($y_{1}$,$y_{2}$,$y_{3}$,....$y_{n}$)\newline
+
+from the definition, consider $f[$\lambda$x+(1-\lambda)y]-[ $\lambda$f(x)+(1-\lambda)f(y)$]\newline
+
+consider two points $(x_{1},y_{1})$and$(x_{2},y_{2})$.\newline.
+
+calculating $f[$\lambda(x_{1},y_{1})$+(1-\lambda)(x_{2},y_{2})]-[ $\lambda$f(x_{1},y_{1})+(1-\lambda)f(x_{2},y_{2})$]\newline
+
+$\Rightarrow$  $f[$\lambda$x_{1}$+(1-\lambda)x_{2}$,$\lambda$y_{1}$+(1-\lambda)y_{2}$]-[ $\lambda$f(x_{1},y_{1})+(1-\lambda)f(x_{2},y_{2})$]\newline
+
+$\Rightarrow$ $\lambda^{2}$$x_{1}y_{1}$+$(1-\lambda)^{2}$$x_{2}y_{2}$+$\lambda(1-\lambda)$$(x_{1}y_{2}+x_{2}y_{1})$-[$\lambda$$x_{1}y_{1}$+$(1-\lambda)$$x_{2}y_{2}$]\newline
+
+$\Rightarrow$$(\lambda^{2}-\lambda)(x_{1}y_{1}+x_{2}y_{2})$+$(\lambda-\lambda^{2})(x_{1}y_{2}+x_{2}y_{1})$\newline
+
+$\Rightarrow$$(\lambda^{2}-\lambda)(x_{1}y_{1}+x_{2}y_{2}-x_{1}y_{2}-x_{2}y_{1})$\newline
+
+$\Rightarrow$$(\lambda^{2}-\lambda)[x_{1}(y_{1}-y_{2})+x_{2}(y_{2}-y_{1})]$\newline
+
+\end{frame}
+\begin{frame}
+    
+
+
+$\Rightarrow$$(\lambda^{2}-\lambda)(x_{1}-x_{2})(y_{1}-y_{2})$\newline
+for those  points where $(x_{1}-x_{2})(y_{1}-y_{2})\leq0$ it takes a negative value, hence it shows that at those points \newline
+
+Hence,from the above equation we can conclude that for those  points where $(x_{1}-x_{2})(y_{1}-y_{2})\geq0$ it takes a negative value, hence it shows that at those points \newline
+$f[$\lambda$x+(1-\lambda)y] \leq $\lambda$f(x)+(1-\lambda)f(y)$\newline
+
+Which concludes that it is convex at those points.\newline
+
+For those  points where $(x_{1}-x_{2})(y_{1}-y_{2})\leq0$ it takes a positive value, hence it shows that at those points \newline
+$f[$\lambda$x+(1-\lambda)y] \geq $\lambda$f(x)+(1-\lambda)f(y)$\newline
+
+Which concludes that it is concave at those points.
+
+\end{frame}
+
+
+\begin{frame}
+    
+Final Conclusion: \newline \newline
+      The function is convex where: \newline
+         $x_{1}>x_{2} , y_{1}>y_{2}$ and
+         $x_{1}<x_{2} , y_{1}<y_{2}$ \newline
+      The function is convex where: \newline
+         $(x_{1}<x_{2}) , (y_{1}>y_{2})$ and
+         $(x_{1}>x_{2}) , (y_{1}<y_{2})$
+\end{frame}
+
+%-----------------------
+
+
+
+\begin{frame}
+\Huge{\centerline{The End}}
+\quad \quad\quad \quad \quad Thank You!
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}
