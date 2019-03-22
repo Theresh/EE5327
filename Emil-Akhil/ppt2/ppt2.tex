@@ -1,0 +1,226 @@
+\documentclass{beamer}
+%
+% Choose how your presentation looks.
+%
+% For more themes, color themes and font themes, see:
+% http://deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html
+%
+\mode<presentation>
+{
+  \usetheme{Darmstadt}      % or try Darmstadt, Madrid, Warsaw, ...
+  \usecolortheme{default} % or try albatross, beaver, crane, ...
+  \usefonttheme{default}  % or try serif, structurebold, ...
+  \setbeamertemplate{navigation symbols}{}
+  \setbeamertemplate{caption}[numbered]
+} 
+
+
+\usepackage{color}
+\usepackage{listings}
+\usepackage{setspace}
+\definecolor{Code}{rgb}{0,0,0}
+\definecolor{Decorators}{rgb}{0.5,0.5,0.5}
+\definecolor{Numbers}{rgb}{0.5,0,0}
+\definecolor{MatchingBrackets}{rgb}{0.25,0.5,0.5}
+\definecolor{Keywords}{rgb}{0,0,1}
+\definecolor{self}{rgb}{0,0,0}
+\definecolor{Strings}{rgb}{0,0.63,0}
+\definecolor{Comments}{rgb}{0,0.63,1}
+\definecolor{Backquotes}{rgb}{0,0,0}
+\definecolor{Classname}{rgb}{0,0,0}
+\definecolor{FunctionName}{rgb}{0,0,0}
+\definecolor{Operators}{rgb}{0,0,0}
+\definecolor{Background}{rgb}{0.98,0.98,0.98}
+\lstdefinelanguage{Python}{
+numbers=left,
+numberstyle=\footnotesize,
+numbersep=1em,
+xleftmargin=1em,
+framextopmargin=2em,
+framexbottommargin=2em,
+showspaces=false,
+showtabs=false,
+showstringspaces=false,
+frame=l,
+tabsize=4,
+% Basic
+basicstyle=\ttfamily\small\setstretch{1},
+backgroundcolor=\color{Background},
+% Comments
+commentstyle=\color{Comments}\slshape,
+% Strings
+stringstyle=\color{Strings},
+morecomment=[s][\color{Strings}]{"""}{"""},
+morecomment=[s][\color{Strings}]{'''}{'''},
+% keywords
+morekeywords={import,from,class,def,for,while,if,is,in,elif,else,not,and,or,print,break,continue,return,True,False,None,access,as,,del,except,exec,finally,global,import,lambda,pass,print,raise,try,assert},
+keywordstyle={\color{Keywords}\bfseries},
+% additional keywords
+morekeywords={[2]@invariant,pylab,numpy,np,scipy},
+keywordstyle={[2]\color{Decorators}\slshape},
+emph={self},
+emphstyle={\color{self}\slshape},
+%
+}
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsmath}
+
+\title[Your Short Title]{Optimization}
+\author{Emil Joseph (ES15BTECH11009), Akhil Ahsref (EE15BTECH11003)}
+\institute{IITH}
+\date{\today}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+% Uncomment these lines for an automatically generated outline.
+%\begin{frame}{Outline}
+%  \tableofcontents
+%\end{frame}
+
+\section{Problem Statement}
+
+\begin{frame}{Problem Statement}
+Minimize, \\
+$$x_{1} + x_{2}$$
+Subject to,
+\begin{equation*}
+    2x_{1} + x_{2} \geq 8 
+\end{equation*}
+\begin{equation*}
+    2x_{1} + 5x_{2} \geq 10 
+\end{equation*}
+\begin{equation*}
+    x_{1},x_{2} \geq 0 
+\end{equation*}
+
+Using Simplex.
+
+\end{frame}
+
+\section{Solution}
+\begin{frame}{}
+    Since this problem is not in standard form, (i.e constraints $Ax \leq b$, with $b  \geq 0 $), This problem has to be solved using Two-Phase simplex method. The above problem statement can be written as,\\ \\ \\
+    Minimize, \\
+$$x_{1} + x_{2}$$
+Subject to,
+\begin{equation*}
+    2x_{1} + x_{2} - s_{1} + a_{1} = 8 
+\end{equation*}
+\begin{equation*}
+    2x_{1} + 5x_{2} - s_{2} + a_{2} = 10 
+\end{equation*}
+\begin{equation*}
+    x_{1},x_{2},s_{1},s_{2},a_{1},a_{2} \geq 0 
+\end{equation*}
+where, $s_{1}, s_{2}$ are slack variables and $a_{1},a_{2}$ are artificial variables.
+\end{frame}
+
+\begin{frame}{Phase 1}
+     Minimize, \\
+$$a_{1} + a_{2}$$
+Subject to,
+\begin{equation*}
+    2x_{1} + x_{2} - s_{1} + a_{1} = 8 
+\end{equation*}
+\begin{equation*}
+    2x_{1} + 5x_{2} - s_{2} + a_{2} = 10 
+\end{equation*}
+\begin{equation*}
+    x_{1},x_{2},s_{1},s_{2},a_{1},a_{2} \geq 0 
+\end{equation*}
+\end{frame}
+
+\begin{frame}{}
+\begin{table}[h!]
+    \begin{tabular}{c c | c c c c c c | c}
+        &  & x_{1} & x_{2} & s_{1} & s_{2} & a_{1} & a_{2} &\\
+        & c & 0 & 0 & 0 & 0 & 1 & 1 &\\
+        \hline \hline
+        1 & a_{1} & 2 & 1 & -1 & 0 & 1 & 0 & 8\\
+        1 & a_{2} & 2 & 5 & 0 & -1 & 0 & 1 & 10\\
+        \hline
+        & z & 4 & 6 & -1 & -1 & 1 & 1 &  \\
+        & c - z & -4 & -6 & 1 & 1 & 0 & 0 & \\
+    \end{tabular}
+\end{table}    
+
+
+\begin{table}[h!]
+    \begin{tabular}{c c | c c c c c c | c}
+        & & x_{1} & x_{2} & s_{1} & s_{2} & a_{1} & a_{2} &\\
+        & c & 0 & 0 & 0 & 0 & 1 & 1 &\\
+        \hline \hline
+        1 & a_{1} & 8/5 & 0 & -1 & 1/5 & 1 & -1/5 & 6\\
+        0 & x_{2} & 2/5 & 1 & 0 & -1/5 & 0 & 1/5 & 2\\
+        \hline
+        & z & 8/5 & 0 & -1 & 1/5 & 1 & -1/5 &  \\
+        & c - z & -8/5 & 0 & 1 & 1/5 & 0 & 4/5 & \\
+    \end{tabular}
+\end{table}    
+\end{frame}
+
+\begin{frame}{}
+    \begin{table}[h!]
+    \begin{tabular}{c c | c c c c c c | c}
+        & & x_{1} & x_{2} & s_{1} & s_{2} & a_{1} & a_{2} &\\
+        & c & 0 & 0 & 0 & 0 & 1 & 1 &\\
+        \hline \hline
+        0 & x_{1} & 1 & 0 & -5/8 & 1/8 & 5/8 & -1/8 & 30/8\\
+        0 & x_{2} & 0 & 1 & 1/4 & -1/4 & -1/4 & 1/4 & 1/2\\
+        \hline
+        & z & 0 & 0 & 0 & 0 & 0 & 0 &  \\
+        & c - z & 0 & 0 & 0 & 0 & 1 & 1 & \\
+    \end{tabular}
+\end{table}   
+
+Since the cost functions are all positive, feasible solution exists and this will be the table for Phase 2.
+\end{frame}
+
+
+\begin{frame}{Phase 2}
+\begin{table}[h!]
+    \begin{tabular}{c c | c c c c | c}
+        & & x_{1} & x_{2} & s_{1} & s_{2}  &\\
+        & c & 1 & 1 & 0 & 0 &\\
+        \hline \hline
+        1 & x_{1} & 1 & 0 & -5/8 & 1/8  & 15/4\\
+        1 & x_{2} & 0 & 1 & 1/4 & -1/4  & 1/2\\
+        \hline
+        & z & 1 & 1 & -3/8 & -1/8  &  \\
+        & c - z & 0 & 0 & 3/8 & 1/8  & \\
+    \end{tabular}
+\end{table}   
+    Since the values in c-z row are all positive, the feasible solution is x_{1} = 3.75, x_{2} = 0.5.
+    
+    The minimum value  = 4.25
+\end{frame}
+
+\section{Code}
+\begin{frame}{Code}
+\lstinputlisting[language=Python]{47.py}
+\end{frame}
+
+\section{Result}
+\begin{frame}{Result}
+    \begin{equation*}
+    \begin{bmatrix}
+        x_{1} \\
+        x_{2} 
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        3.75 \\
+        0.50 
+    \end{bmatrix}
+        
+\end{equation*}
+Minimum Value is, $x_{1} + x_{2} = 3.75 + 0.50 = 4.25$.
+
+\end{frame}
+
+\end{document}
