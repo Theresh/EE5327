@@ -1,0 +1,322 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Beamer Presentation
+% LaTeX Template
+% Version 1.0 (10/11/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND THEMES
+%----------------------------------------------------------------------------------------
+
+\documentclass{beamer}
+
+\mode<presentation> {
+
+% The Beamer class comes with a number of default slide themes
+% which change the colors and layouts of slides. Below this is a list
+% of all the themes, uncomment each in turn to see what they look like.
+
+%\usetheme{default}
+%\usetheme{AnnArbor}
+%\usetheme{Antibes}
+%\usetheme{Bergen}
+%\usetheme{Berkeley}
+%\usetheme{Berlin}
+%\usetheme{Boadilla}
+%\usetheme{CambridgeUS}
+%\usetheme{Copenhagen}
+%\usetheme{Darmstadt}
+%\usetheme{Dresden}
+%\usetheme{Frankfurt}
+%\usetheme{Goettingen}
+%\usetheme{Hannover}
+%\usetheme{Ilmenau}
+%\usetheme{JuanLesPins}
+%\usetheme{Luebeck}
+\usetheme{Madrid}
+%\usetheme{Malmoe}
+%\usetheme{Marburg}
+%\usetheme{Montpellier}
+%\usetheme{PaloAlto}
+%\usetheme{Pittsburgh}
+%\usetheme{Rochester}
+%\usetheme{Singapore}
+%\usetheme{Szeged}
+%\usetheme{Warsaw}
+
+% As well as themes, the Beamer class has a number of color themes
+% for any slide theme. Uncomment each of these in turn to see how it
+% changes the colors of your current slide theme.
+
+%\usecolortheme{albatross}
+%\usecolortheme{beaver}
+%\usecolortheme{beetle}
+%\usecolortheme{crane}
+%\usecolortheme{dolphin}
+%\usecolortheme{dove}
+%\usecolortheme{fly}
+%\usecolortheme{lily}
+%\usecolortheme{orchid}
+%\usecolortheme{rose}
+%\usecolortheme{seagull}
+%\usecolortheme{seahorse}
+%\usecolortheme{whale}
+%\usecolortheme{wolverine}
+
+%\setbeamertemplate{footline} % To remove the footer line in all slides uncomment this line
+%\setbeamertemplate{footline}[page number] % To replace the footer line in all slides with a simple slide count uncomment this line
+
+%\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
+}
+
+\usepackage{graphicx} % Allows including images
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title[3.8-3.11]{Solutions to  Problems 3.8-3.11} % The short title appears at the bottom of every slide, the full title is only on the title page
+
+\author{Adithya Hosapate \\ Sushant Meena} % Your name
+\institute[IITH] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+{
+IIT Hyderabad \\ % Your institution for the title page
+\medskip
+\textit{ee16btech11040@iith.ac.in} % Your email address 
+\medskip \\
+\textit{es16btech11021@iith.ac.in}
+}
+\date{\today} % Date, can be changed to a custom date
+
+\begin{document}
+
+\begin{frame}
+\titlepage % Print the title page as the first slide
+\end{frame}
+
+
+
+%----------------------------------------------------------------------------------------
+%	PRESENTATION SLIDES
+%----------------------------------------------------------------------------------------
+
+%------------------------------------------------
+
+
+\begin{frame}
+\frametitle{Question 3.8}
+Find graphically,
+\begin{equation*}
+    \min_{x} f(\textbf{x}) =(x_1-8)^2+(x_2-6)^2 
+\end{equation*}
+Subject to the constraint $g(\textbf{x})=x_1+x_2-18=0$\\
+Solution:\\
+\begin{center}
+   \includegraphics[scale=0.3]{kapp.png}
+ 
+\end{center}
+
+\end{frame}
+
+
+
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Question 3.9}
+Solve Using Lagrangian,
+\begin{equation*}
+    \min_{x} f(\textbf{x}) =(x_1-8)^2+(x_2-6)^2 
+\end{equation*}
+Subject to the constraint $ g( \textbf{x} )=x_1+x_2-18=0 $\\
+Solution:\\
+\begin{equation*}
+   L(\textbf{x},\lambda)=(x_1-8)^2+(x_2-6)^2 + \lambda(x_1+x_2-18)
+\end{equation*}
+
+By Stationarity,
+
+\begin{equation*}
+   \nabla_{x} L( \textbf{x}^{opt} , \lambda )=0
+\end{equation*}
+This gives the 2 equations $2x_1 - 16 - \lambda =0$,$2x_2 - 12 - \lambda=0$.
+
+
+
+
+
+\end{frame}
+
+
+%------------------------------------------------
+
+
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Question 3.9}
+
+ 2 equations $2x_1 - 16 - \lambda =0$, $2x_2 - 12 - \lambda=0$.\\
+From primal feasibility, we get the third equation: $x_1+x_2-18=0$.
+\begin{equation*}
+    \begin{bmatrix}
+    2       & 0 & -1  \\
+   0       & 2 & -1  \\
+
+   1      & 1 & 0 \\
+\end{bmatrix}
+  \begin{bmatrix}
+    x_1  \\
+   x_2  \\
+
+   \lambda \\
+\end{bmatrix}
+=\begin{bmatrix}
+    16  \\
+   12  \\
+   18 \\
+\end{bmatrix}
+
+\end{equation*}\\
+Solving, we get:
+\begin{center}
+    
+
+$
+
+  \begin{bmatrix}
+    x_1  \\
+   x_2  \\
+
+   \lambda \\
+\end{bmatrix}
+=\begin{bmatrix}
+    10  \\
+   8  \\
+
+   4 \\
+\end{bmatrix}
+
+$
+\end{center}
+
+Note That Dual Feasibility and Complimentary Slackness are trivially true as there are no inequality constraints.
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+
+\begin{frame}
+\frametitle{Question 3.10}
+Solve the same minimization problem as in 3.9,
+subject to the constraint $ g( \textbf{x} )=x_1+x_2-18 \geq 0 $\\
+Solution:\\
+\begin{equation*}
+   L(\textbf{x},\mu)=(x_1-8)^2+(x_2-6)^2 + \mu(x_1+x_2-18) 
+\end{equation*}
+
+By Dual Feasibility,$\mu \geq 0$.\\
+By complimentary slackness: $\mu(x_1+x_2-18)=0$\\
+By Stationarity,
+
+\begin{equation*}
+   \nabla_{x} L( \textbf{x}^{opt} , \mu )=0
+\end{equation*}
+This gives the 2 equations $2x_1 - 16 - \mu =0$,$2x_2 - 12 - \mu=0$.
+\end{frame}
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Question 3.10}
+
+ 2 equations $2x_1 - 16 - \mu =0$, $2x_2 - 12 - \mu=0$.\\
+From primal feasibility, we get the third equation: $x_1+x_2-18=0$.
+\begin{equation*}
+    \begin{bmatrix}
+    2       & 0 & -1  \\
+   0       & 2 & -1  \\
+
+   1      & 1 & 0 \\
+\end{bmatrix}
+  \begin{bmatrix}
+    x_1  \\
+   x_2  \\
+
+   \mu \\
+\end{bmatrix}
+=\begin{bmatrix}
+    16  \\
+   12  \\
+   18 \\
+\end{bmatrix}
+
+\end{equation*}\\
+Solving, we get:
+\begin{center}
+    
+
+$
+
+  \begin{bmatrix}
+    x_1  \\
+   x_2  \\
+
+   \mu \\
+\end{bmatrix}
+=\begin{bmatrix}
+    10  \\
+   8  \\
+   4 \\
+\end{bmatrix}
+
+$
+\end{center}
+
+Note That Dual Feasibility is satisfied as $\mu \geq 0$\\
+Note That Complimentary slackness is also satisfied as\\
+\begin{center}
+$\mu(x_1+x_2-18)=4(10+8-18)=0$
+
+\end{center}
+
+
+\end{frame}
+%----------------------------------------------------------------------------------------
+
+\begin{frame}
+\frametitle{Question 3.11}
+Generalize Lagrangian Multiplier Method for
+\begin{equation*}
+    \min_{x} f(\textbf{x})
+\end{equation*}
+Subject to the constraint $ g( \textbf{x} ) \geq 0 $\\
+Solution:\\
+\begin{equation*}
+   L(\textbf{x},\lambda)=f(\textbf{x})-\mu g(\textbf{x})
+\end{equation*}
+
+\begin{equation*}
+   \nabla_{x} f( \textbf{x}^{opt}) , \mu )=\mu \nabla_{x} g(\textbf{x}^{opt})
+\end{equation*}
+
+\begin{equation*}
+    \mu \geq 0, \mu g(\textbf{x}^{opt})=0
+\end{equation*}
+  
+
+
+
+
+
+
+\end{frame}
+
+\end{document} 

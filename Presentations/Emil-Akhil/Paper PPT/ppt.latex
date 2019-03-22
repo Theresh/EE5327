@@ -1,0 +1,267 @@
+\documentclass{beamer}
+%
+% Choose how your presentation looks.
+%
+% For more themes, color themes and font themes, see:
+% http://deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html
+%
+\mode<presentation>
+{
+  \usetheme{Darmstadt}      % or try Darmstadt, Madrid, Warsaw, ...
+  \usecolortheme{default} % or try albatross, beaver, crane, ...
+  \usefonttheme{default}  % or try serif, structurebold, ...
+  \setbeamertemplate{navigation symbols}{}
+  \setbeamertemplate{caption}[numbered]
+} 
+
+
+\usepackage{color}
+\usepackage{listings}
+\usepackage{setspace}
+\definecolor{Code}{rgb}{0,0,0}
+\definecolor{Decorators}{rgb}{0.5,0.5,0.5}
+\definecolor{Numbers}{rgb}{0.5,0,0}
+\definecolor{MatchingBrackets}{rgb}{0.25,0.5,0.5}
+\definecolor{Keywords}{rgb}{0,0,1}
+\definecolor{self}{rgb}{0,0,0}
+\definecolor{Strings}{rgb}{0,0.63,0}
+\definecolor{Comments}{rgb}{0,0.63,1}
+\definecolor{Backquotes}{rgb}{0,0,0}
+\definecolor{Classname}{rgb}{0,0,0}
+\definecolor{FunctionName}{rgb}{0,0,0}
+\definecolor{Operators}{rgb}{0,0,0}
+\definecolor{Background}{rgb}{0.98,0.98,0.98}
+\lstdefinelanguage{Python}{
+numbers=left,
+numberstyle=\footnotesize,
+numbersep=1em,
+xleftmargin=1em,
+framextopmargin=2em,
+framexbottommargin=2em,
+showspaces=false,
+showtabs=false,
+showstringspaces=false,
+frame=l,
+tabsize=4,
+% Basic
+basicstyle=\ttfamily\small\setstretch{1},
+backgroundcolor=\color{Background},
+% Comments
+commentstyle=\color{Comments}\slshape,
+% Strings
+stringstyle=\color{Strings},
+morecomment=[s][\color{Strings}]{"""}{"""},
+morecomment=[s][\color{Strings}]{'''}{'''},
+% keywords
+morekeywords={import,from,class,def,for,while,if,is,in,elif,else,not,and,or,print,break,continue,return,True,False,None,access,as,,del,except,exec,finally,global,import,lambda,pass,print,raise,try,assert},
+keywordstyle={\color{Keywords}\bfseries},
+% additional keywords
+morekeywords={[2]@invariant,pylab,numpy,np,scipy},
+keywordstyle={[2]\color{Decorators}\slshape},
+emph={self},
+emphstyle={\color{self}\slshape},
+%
+}
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\title[Your Short Title]{Paper Presentation}
+\author{Emil Joseph (ES15BTECH11009), Akhil Ahsref (EE15BTECH11003)}
+\institute{IITH}
+\date{\today}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+% Uncomment these lines for an automatically generated outline.
+%\begin{frame}{Outline}
+%  \tableofcontents
+%\end{frame}
+
+
+\begin{frame}{Topic}
+
+PARALLEL STOCHASTIC SUCCESSIVE CONVEX APPROXIMATION
+METHOD FOR LARGE-SCALE DICTIONARY LEARNING
+\newline
+\newline
+Alec Koppel, Aryan Mokhtari, and Alejandro Ribeiro
+\newline
+\newline
+\href{https://www.researchgate.net/publication/327805556_Parallel_Stochastic_Successive_Convex_Approximation_Method_for_Large-Scale_Dictionary_Learning}{\textcolor{blue}{Paper Link}}
+\end{frame}
+
+
+\begin{frame}{Abstract}
+Consider the problem of dictionary learning over training sets
+whose sample size and parameter dimension are large-scale, which
+is formulated as a non-convex stochastic program where the objective
+decomposes into a smooth non-convex part and a convex
+sparsity-promoting penalty.
+\newline
+\newline
+This paper proposes a new method to find the optimum parameters from a non-convex objective function.
+\end{frame}
+
+\begin{frame}{Setting up the problem}
+Consider a collection of signals $z_{n}  \epsilon  R^{p}$. In dictionary learning, we have to find a corresponding $\alpha_{n}  \epsilon  R^{k}$ such that $\textbf{z} = \alpha\textbf{D}$ (in ideal case), where \textbf{D} is the dictionary matrix $[d_{1}, ..,d_{k} ] \epsilon R^{pxk}$. $\alpha$ is sparse and $k \ge p$.
+\newline
+The aim is to minimize the loss function,
+\begin{equation}
+    (D^{*},\alpha^{*}) = \text{argmin}\{E[\textbf{D}\alpha - \textbf{z}] + \lambda|\alpha|_{1}\}
+\end{equation}
+\end{frame}
+
+
+\begin{frame}{Solution}
+    To solve this problem, we iteratively find the best local optimum by converting the current set of data points by replacing the objective function with a convex surrogate function. So the objective function is re-written as,
+    \begin{equation}
+        V(x) := F(x) + \lambda|\alpha|_{1}
+    \end{equation}
+    where $x$ is concatenation of \textbf{D} and $\alpha$
+\end{frame}
+
+\begin{frame}{Assumptions on surrogate function F(x)}
+\textbf{Assumption 1:}
+\newline
+Consider $x_{i}$ as the concatenation of all coordinates
+of x other than those of block i. The surrogate $f_{i}(x_{i}; x, z)$
+associated with the i-th block of x, i.e., $x_{i}$, satisfies the following,
+\newline
+1) $f_{i}(x_{i}; x, z)$ is differentiable, convex w.r.t. $x_{i}$ for all x, z.
+\newline
+2) $\nabla_{x_{i}} f_{i}(x_{i}; x, z) = \nabla_{x_{i}} f(x; z)$ for all x, z.
+\newline
+3) $\nabla_{x_{i}} f_{i}(x_{i}; x, z)$ is Lipschitz continuous on $\chi$ with constant $\Gamma$.
+\end{frame}
+
+\begin{frame}{}
+    \textbf{Assumption 2:} \newline
+    The sets $\chi_{i}$ are convex and compact.
+    \newline \newline
+    \textbf{Assumption 3:} \newline
+    Let $F^{t}$ be the sigma-algebra generated by the collection
+of past realizations of x and z up to iteration t, i.e. $F^{t} \supset \{(x_{u}, z_{u})\}_{u \leq t}$. The instantaneous gradients $\nabla_{x_{i}} f(x^{t},z^{t})$ induce
+stochastic errors whose conditional variance is finite:
+\begin{equation}
+  \textbf{E} [|| \nabla_{x_{i}} f(x^{t},z^{t}) - \nabla_{x_{i}}F(x^{t}) ||^2  | F^{t}] \leq \sigma^2 \leq \infty
+\end{equation}
+\end{frame}
+
+\begin{frame}{}
+    \textbf{Assumption 4:} \newline
+    The statistical average objective F(x) has L-Lipschitz continuous gradients, i.e., for all $x,y \epsilon \chi$
+\end{frame}
+
+\begin{frame}{Doubly Stochastic Successive
+Convex approximation scheme (DSSC)}
+This is done on mini-batches which updates only a set of small number of parameters. 
+\newline
+To do so, define the mini-batch sample surrogate function as, $$f_{i}(x_{i}; x^t,\textbf{Z}^{t}_{i}) = \frac{1}{L} \sum_{z} f_{i}(x_{i}; x^{t}, z)$$ for a given a set of realizations $\textbf{Z}^{t}_{i}$ , where L is the size of the mini-batch. Further define the mini-batch surrogate function gradient associated with the set  $$ \textbf{Z}^{t}_{i} : \nabla f_{i}(x_{i}; x^t,\textbf{Z}^{t}_{i}) = \frac{1}{L} \sum_{z} \nabla f_{i}(x_{i}; x^{t}, z)$$ 
+\end{frame}
+
+\begin{frame}{Cont.}
+With this, we can re-write the objective function as,
+\begin{align*}
+    \hat{x}^{t + 1}_{i} = \text{argmin}_{x_{i}} \{ \rho^{t}f_{i}(x_{i};x^{t},\textbf{Z}_{i}^{t}) &+ (1 - \rho^{t})(d_{i}^{t - 1})^{T}(x_{i} - x_{i}^{t})\\ &+ \frac{\tau_{i}}{2}||x_{i} - x_{i}^{t} ||^{2} + g_{i}(x_{i})\}
+\end{align*}
+where,
+\begin{equation}
+    g_{i}(x_{i}) = \lambda||\alpha_{i}||_{1}
+\end{equation}
+\end{frame}
+\begin{frame}{Cont.}
+    where,
+    \begin{equation}
+        d_{i}^{t} = (1 - \rho^{t})(d_{i}^{t - 1}) + \rho^{t}\nabla_{x_{i}} f_{i}(x_{i};x^{t},\textbf{Z}_{i}^{t})
+    \end{equation}
+    $x_{i}$'s are updated as,
+    \begin{equation}
+        x_{i}^{t + 1} = (1 - \gamma^{t + 1})(x_{i}^{t}) + \gamma^{t + 1}\hat{x}_{i}^{t + 1}
+    \end{equation}
+    where, $\gamma$ is a known constant which is properly chosen.
+\end{frame}
+\begin{frame}{Proof of Convexity}
+    $f_{i}(x_{i};x^{t},\textbf{Z}_{i}^{t})$ is the obtained convex surrogate function.
+    \newline
+    \newline
+    Proof that $(x_{i} - x_{i}^{t})$ and $\lambda || \alpha_{i}||$ is convex (Note that $x_{i}^{t}$ is a constant and $\alpha = \textbf{D}^{-1}X$) :
+    \newline
+    Let $g(x) = (ax - c)$. where c is some constant vector.
+    \begin{align*}
+        g(\lambda x_{1} + (1- \lambda)x_{2}) &= \lambda ax_{1} + (1- \lambda)ax_{2} - c \\
+        &= \lambda(ax_{1} - c) + (1 - \lambda)(ax_{2} - c) \\
+        &= \lambda g(x_{1}) + (1- \lambda)g(x_{2})
+    \end{align*}
+    Hence $(x_{i} - x_{i}^{t})$ and and $\lambda || \alpha_{i}||$ is convex.
+    
+\end{frame}
+
+\begin{frame}{Proof of Convexity Cont.}
+    Now to prove that $|| x_{i} - x_{i}^{t} ||^2$ is also convex.
+    \newline
+    Consider the function, $g(x) = || x - c ||^2$  where c is some constant vector.
+    \begin{align*}
+        & \lambda g(x_{1}) + (1- \lambda)g(x_{2}) - g(\lambda x_{1} + (1- \lambda)x_{2}) \\
+        &= \lambda || x_{1} - c ||^2 + (1 - \lambda)|| x_{2} - c ||^2 - || \lambda x_{1} + (1- \lambda)x_{2} - c ||^2 \\
+        &= \lambda(1- \lambda)\{|| x_{1} - c ||^2 + || x_{2} - c ||^2 - 2|| x_{1} - c |||| x_{2} - c ||\}\\
+        &= \lambda(1- \lambda)\{|| x_{1} - c || - || x_{1} - c || \}^2 \\
+        &\geq 0
+    \end{align*}
+    Therefore,
+    \begin{equation*}
+        \lambda g(x_{1}) + (1- \lambda)g(x_{2}) \geq g(\lambda x_{1} + (1- \lambda)x_{2}) 
+    \end{equation*}
+    Hence $|| x_{i} - x_{i}^{t} ||^2$ is convex.
+\end{frame}
+
+\begin{frame}{Proof of Convexity Cont.}
+    Our objective function is a conical (linear with coefficients $\ge 0$) combination of the above convex functions. Hence the whole objective function is convex.
+\end{frame}
+
+\begin{frame}{Algorithm}
+    \textbf{Require}: sequences $\gamma^{t}$ and $\rho^{t}$.
+    \newline
+    \textbf{for} t = 0,1,2... \textbf{do}
+    \newline \newline
+    Read the variable $x_{t}$.\newline
+    Receive the randomly chosen block $i$ \newline
+    Choose training subset $Z^{t}_{i}$ for block $x_{i}$\newline
+    Compute surrogate function $f_{i}(x_{i};x^{t},\textbf{Z}_{i}^{t})$ \newline
+    Compute variable $\hat{x}^{t+1}_{i}$. \newline
+    Compute surrogate gradient $\nabla f_{i}(x_{i};x^{t},\textbf{Z}_{i}^{t})$ \newline
+    Update average gradient $d^{t}_{i}$ associated with block i \newline
+    Compute the updated variable $x^{t+1}_{i}$
+    \newline \newline
+    \textbf{end}
+    
+\end{frame}
+
+\begin{frame}{Parameter Selection}
+$\gamma$ and $\rho$ are chosen such that,
+\begin{equation}
+    \text{lim}_{t \rightarrow \infty} \gamma^{t} = 0 , \sum^{\infty}_{t = 0} \gamma^{t} = \infty, \sum^{\infty}_{t = 0} (\gamma^{t})^{2} < \infty 
+\end{equation}
+
+\begin{equation}
+    \text{lim}_{t \rightarrow \infty} \rho^{t} = 0 , \sum^{\infty}_{t = 0} \rho^{t} = \infty, \sum^{\infty}_{t = 0} (\rho^{t})^{2} < \infty 
+\end{equation}
+
+\begin{equation}
+    \sum^{\infty}_{t = 0}\frac{(\gamma^{t})^{2}}{\rho^{t}}  < \infty 
+\end{equation}
+
+\end{frame}
+\begin{frame}{Their Results}
+    \begin{figure}
+        \centering
+        \includegraphics[width= \linewidth]{OPT.png}
+        \caption{Results}
+        \label{fig:my_label}
+    \end{figure}
+\end{frame}
+\end{document}

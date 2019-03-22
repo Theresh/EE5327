@@ -1,0 +1,229 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Beamer Presentation
+% LaTeX Template
+% Version 1.0 (10/11/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND THEMES
+%----------------------------------------------------------------------------------------
+
+\documentclass{beamer}
+
+\mode<presentation> {
+
+% The Beamer class comes with a number of default slide themes
+% which change the colors and layouts of slides. Below this is a list
+% of all the themes, uncomment each in turn to see what they look like.
+
+%\usetheme{default}
+%\usetheme{AnnArbor}
+%\usetheme{Antibes}
+%\usetheme{Bergen}
+%\usetheme{Berkeley}
+%\usetheme{Berlin}
+%\usetheme{Boadilla}
+%\usetheme{CambridgeUS}
+%\usetheme{Copenhagen}
+%\usetheme{Darmstadt}
+%\usetheme{Dresden}
+%\usetheme{Frankfurt}
+%\usetheme{Goettingen}
+%\usetheme{Hannover}
+%\usetheme{Ilmenau}
+%\usetheme{JuanLesPins}
+%\usetheme{Luebeck}
+\usetheme{Madrid}
+%\usetheme{Malmoe}
+%\usetheme{Marburg}
+%\usetheme{Montpellier}
+%\usetheme{PaloAlto}
+%\usetheme{Pittsburgh}
+%\usetheme{Rochester}
+%\usetheme{Singapore}
+%\usetheme{Szeged}
+%\usetheme{Warsaw}
+
+% As well as themes, the Beamer class has a number of color themes
+% for any slide theme. Uncomment each of these in turn to see how it
+% changes the colors of your current slide theme.
+
+%\usecolortheme{albatross}
+%\usecolortheme{beaver}
+%\usecolortheme{beetle}
+%\usecolortheme{crane}
+%\usecolortheme{dolphin}
+%\usecolortheme{dove}
+%\usecolortheme{fly}
+%\usecolortheme{lily}
+%\usecolortheme{orchid}
+%\usecolortheme{rose}
+%\usecolortheme{seagull}
+%\usecolortheme{seahorse}
+%\usecolortheme{whale}
+%\usecolortheme{wolverine}
+
+%\setbeamertemplate{footline} % To remove the footer line in all slides uncomment this line
+%\setbeamertemplate{footline}[page number] % To replace the footer line in all slides with a simple slide count uncomment this line
+
+%\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
+}
+
+\usepackage{graphicx} % Allows including images
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title[]{Problem Formulation of LMS Filter} % The short title appears at the bottom of every slide, the full title is only on the title page
+
+\author[K Samhitha , G Anusha] % (optional, for multiple authors)
+{K Samhitha\inst{1} \and G Anusha\inst{2}}
+\institute[IITH] % (optional)
+{
+  \inst{1}%
+  EE16BTECH11019\\
+  \and
+  \inst{2}%
+  EE16BTECH11011\\
+  }
+
+\date{\today} % Date, can be changed to a custom date
+
+\begin{document}
+
+\begin{frame}
+\titlepage % Print the title page as the first slide
+\end{frame}
+
+
+
+%----------------------------------------------------------------------------------------
+%	PRESENTATION SLIDES
+%----------------------------------------------------------------------------------------
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{What is Least Mean Squares Algorithm ?}
+Least mean squares (LMS) algorithms are a class of adaptive filter used to mimic a desired filter by finding the filter coefficients that relate to producing the least mean square of the error signal (difference between the desired and the actual signal). \\
+\\
+It is a stochastic gradient descent method in that the filter is only adapted based on the error at the current time.
+
+
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Problem Formulation}
+The signal-noise waveform d(n) contains a human voice along with an instrument sound in the background.
+This sound is captured in noise waveform X(n).
+The goal is to suppress X(n) in 
+d_n.\\
+\begin{center}
+\begin{equation*}
+     d(n) = e(n) + y(n)
+\end{equation*}
+Where e(n) is the desired signal\\
+\end{center}
+
+
+
+
+\end{frame}
+
+
+
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Cont..}
+We want an estimate
+of W(n) from X(n). This can be done by
+considering
+\begin{center}
+\begin{equation*}
+     y(n) = W^{T}(n)X(n)
+\end{equation*}
+\end{center}
+ Where
+ \begin{center}
+\begin{equation*}
+     X(n) = {\begin{pmatrix}
+
+X(n)\\
+X(n-1)\\
+X(n-2)\\
+..\\
+..\\
+X(n-M+1)\\
+\end{pmatrix}}_{MX1}
+\end{equation*}
+\end{center}
+\end{frame}
+
+
+%------------------------------------------------
+
+\begin{frame}{Cont..}
+ \begin{center}
+\begin{equation*}
+     W(n) = {\begin{pmatrix}
+
+w_1(n)\\
+w_2(n)\\
+w_3(n)\\
+..\\
+..\\
+w_{n-M+1}(n)\\
+\end{pmatrix}}_{MX1}
+\end{equation*}
+\end{center}
+And estimating W(n).\\
+The human voice can be characterized as
+\begin{equation*}
+    e(n) = d(n)-W^{T}(n)X(n)
+\end{equation*}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Cont..}
+The goal is to find W(n) that will allow W^{T}(n)X(n)\\
+to mimic the instrument sound in d(n). This is
+possible if e(n) is minimum. This problem can be
+expressed as
+\begin{center}
+\begin{equation*}
+     \min_{W(n)} e^{2}(n)
+\end{equation*}
+   
+\end{center}
+\end{frame}
+
+
+
+%----------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+\begin{frame}{And last}
+\begin{center}
+    Thank You
+\end{center}
+\end{frame}
+\end{document} 

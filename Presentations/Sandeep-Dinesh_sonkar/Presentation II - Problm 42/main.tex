@@ -1,0 +1,148 @@
+\documentclass{beamer}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  %belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\usetheme{CambridgeUS}
+
+\title{Optimization}
+\author{Sandeep H M \and Dinesh Kumar Sonkar}
+\date{\today}
+\subject{EE5327 - Optimization}
+
+% Let's get started
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\section{Problem}
+\begin{frame}{Problem}
+Four jobs I,II,III,IV are assigned to four workers A,B,C and D. The time taken by different workers (in hours) in completing different jobs is given below:
+\begin{table}[!h]
+\begin{center}
+\begin{tabular}{c c c c c c}
+& & I & II & III & IV \\
+& A & 5 & 3 & 2 & 5 \\
+Workers & B & 7 & 9 & 2 & 3 \\
+& C & 4 & 2 & 3 & 2 \\
+& D & 5 & 7 & 7 & 5  
+\end{tabular}
+\end{center}
+\end{table}
+Find the minimum time taken by the workers to complete the job
+\end{frame}
+
+\section{Conversion to LPP}
+
+\begin{frame}{Conversion to LPP}
+
+\begin{table}[!h]
+\begin{center}
+\begin{tabular}{c | c c c c | c}
+  & I & II & III & IV & \\
+  \hline
+A & $X_{11}$ & $X_{12}$ & $X_{13}$ & $X_{14}$ & 1\\
+B & $X_{21}$ & $X_{22}$ & $X_{23}$ & $X_{24}$ & 1\\
+C & $X_{31}$ & $X_{32}$ & $X_{33}$ & $X_{34}$ & 1\\
+D & $X_{41}$ & $X_{42}$ & $X_{43}$ & $X_{44}$ & 1 \\
+\hline
+  & 1 & 1 & 1 & 1 &
+\end{tabular}
+\end{center}
+\end{table} 
+The variables either take the value 0 or 1.\\
+The sum of each element row-wise is 1.
+\begin{equation*}
+\sum_{j=1}^{4} X_{ij}  = 1 
+\end{equation*}
+The sum of each element column-wise is 1.
+\begin{equation*}
+\sum_{i=1}^{4} X_{ij}  = 1 
+\end{equation*}
+
+
+\end{frame}
+
+\begin{frame}
+ The constraints are
+\begin{equation*}
+    X_{11} + X_{12} + X_{13} + X_{14} = 1
+\end{equation*}
+\begin{equation*}
+    X_{21} + X_{22} + X_{23} + X_{24} = 1
+\end{equation*}
+\begin{equation*}
+    X_{31} + X_{32} + X_{33} + X_{34} = 1
+\end{equation*}
+\begin{equation*}
+    X_{41} + X_{42} + X_{43} + X_{44} = 1
+\end{equation*}
+\begin{equation*}
+    X_{11} + X_{21} + X_{31} + X_{41} = 1
+\end{equation*}
+\begin{equation*}
+    X_{12} + X_{22} + X_{32} + X_{42} = 1
+\end{equation*}
+\begin{equation*}
+    X_{13} + X_{23} + X_{33} + X_{43} = 1
+\end{equation*}
+\begin{equation*}
+    X_{14} + X_{24} + X_{34} + X_{44} = 1
+\end{equation*}
+\begin{equation*}
+    X_{ij} \geq 0 \enspace \forall i,j \in \{1,2,3,4\}
+\end{equation*}
+\end{frame}
+
+\section{Code using cvxpy}
+\begin{frame}{Code using cvxpy}
+\lstinputlisting[firstline=1,lastline=14]{Gate_42.py}
+\end{frame}
+
+\begin{frame}
+\lstinputlisting[firstline=15,lastline=29]{Gate_42.py}
+\end{frame}
+
+\section{Result}
+\begin{frame}{Result}
+The minimum number of hours required is \textbf{12 hours}.\\
+\begin{equation*}
+    \textbf{X}^{*}=
+    \begin{bmatrix}
+    0 & 0 & 1 & 0 \\
+    0 & 0 & 0 & 1\\
+    0 & 1 & 0 & 0\\
+    1 & 0 & 0 & 0
+\end{bmatrix}
+\end{equation*}
+A does task III\\
+B does task IV\\
+C does task II\\
+D does task I\\
+\end{frame}
+
+\end{document}

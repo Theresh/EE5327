@@ -1,0 +1,274 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Beamer Presentation
+% LaTeX Template
+% Version 1.0 (10/11/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND THEMES
+%----------------------------------------------------------------------------------------
+
+\documentclass{beamer}
+
+\mode<presentation> {
+
+% The Beamer class comes with a number of default slide themes
+% which change the colors and layouts of slides. Below this is a list
+% of all the themes, uncomment each in turn to see what they look like.
+
+%\usetheme{default}
+%\usetheme{AnnArbor}
+%\usetheme{Antibes}
+%\usetheme{Bergen}
+%\usetheme{Berkeley}
+%\usetheme{Berlin}
+%\usetheme{Boadilla}
+%\usetheme{CambridgeUS}
+%\usetheme{Copenhagen}
+%\usetheme{Darmstadt}
+%\usetheme{Dresden}
+%\usetheme{Frankfurt}
+%\usetheme{Goettingen}
+%\usetheme{Hannover}
+%\usetheme{Ilmenau}
+%\usetheme{JuanLesPins}
+%\usetheme{Luebeck}
+\usetheme{Madrid}
+%\usetheme{Malmoe}
+%\usetheme{Marburg}
+%\usetheme{Montpellier}
+%\usetheme{PaloAlto}
+%\usetheme{Pittsburgh}
+%\usetheme{Rochester}
+%\usetheme{Singapore}
+%\usetheme{Szeged}
+%\usetheme{Warsaw}
+
+% As well as themes, the Beamer class has a number of color themes
+% for any slide theme. Uncomment each of these in turn to see how it
+% changes the colors of your current slide theme.
+
+%\usecolortheme{albatross}
+%\usecolortheme{beaver}
+%\usecolortheme{beetle}
+%\usecolortheme{crane}
+%\usecolortheme{dolphin}
+%\usecolortheme{dove}
+%\usecolortheme{fly}
+%\usecolortheme{lily}
+%\usecolortheme{orchid}
+%\usecolortheme{rose}
+%\usecolortheme{seagull}
+%\usecolortheme{seahorse}
+%\usecolortheme{whale}
+%\usecolortheme{wolverine}
+
+%\setbeamertemplate{footline} % To remove the footer line in all slides uncomment this line
+%\setbeamertemplate{footline}[page number] % To replace the footer line in all slides with a simple slide count uncomment this line
+
+%\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
+}
+
+\usepackage{graphicx} % Allows including images
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title[Short title]{Optimization } % The short title appears at the bottom of every slide, the full title is only on the title page
+
+\author{MA17BTECH11002,MA17BTECH11007} % Your name
+\institute[IITH] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+{
+Simplex Method \\ % Your institution for the title page
+\medskip
+\textit{Problem 3} % Your email address
+}
+\date{February 28,2019} % Date, can be changed to a custom date
+
+\begin{document}
+
+\begin{frame}
+\titlepage % Print the title page as the first slide
+\end{frame}
+
+\begin{frame}
+\frametitle{Problem}
+
+Solve the linear programming problem using the Simplex Method.\newline
+
+Minimize $ f = -40x_{1}-100x_{2}$\newline\newline
+Subject to:\newline\newline
+\centering 
+$10x_{1}+5x_{2} $\leq$ 2500$,\quad \quad \quad \quad \textcircled{1}\newline
+
+$4x_{1}+10x_{2} $\leq$ 2000$ ,\quad \quad \quad \quad \textcircled{2}\newline
+
+$2x_{1}+3x_{2} $\leq$ 900$, \quad \quad \quad \quad \quad \textcircled{3}\newline
+
+$x_{1}$\geq$0$,
+$x_{2}$\geq$0$
+
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Solution}
+The Problem is converted to canonical form by adding slack,surplus and artificial variables as appropriate.\newline
+
+$\Rightarrow$ As the constraint - 1 is of type '$\leq$' we should add slack variable $S_{1}$ \newline
+
+$\Rightarrow$ As the constraint - 2 is of type '$\leq$' we should add slack variable $S_{2}$\newline
+
+$\Rightarrow$ As the constraint - 3 is of type '$\leq$' we should add slack variable $S_{3}$\newline
+
+\end{frame}
+
+\begin{frame}
+After introducing slack variables, we have\newline
+
+f = $40x_{1}+ 100x_{2} +0S_{1} + 0S_{2} + 0S_{3}$\newline
+
+subject to:
+\centering
+$10x_{1} + 5x_{2} + S_{1} = 2500$\newline
+
+$4x_{1} + 10x_{2} + S_{2} = 2000$\newline
+
+$2x_{1} + 3x_{2} + S_{3} = 900$\newline
+
+and $x{1},x{2},S{1},S_{2},S_{3}\geq0$\newline
+
+
+\end{frame}
+\begin{frame}
+\frametitle{Table}
+\begin{table}
+\begin{tabular}{l l l l l l l l l }
+\toprule
+\textbf{Iteration-1} & \textbf{} & \textbf{$C_{j}$} \textbf{40} & \textbf{100} & \textbf{0} & \textbf{0} & \textbf{0} & \textbf{       }\\
+
+\midrule
+B & $X_{B}$ & $x_{1}$ & $x_{2}$ & $S_{1}$ & $S_{2}$ & $S_{3}$ & Min Ratio=$\frac{X_{B}}{x_{2}}$\\
+$S_{1}$ & $2500$ & 10 & 5 & 1 & 0 & 0 & $\frac{2500}{5}$=500\\
+
+$S_{2}$ & $2000$ & 4 & (10) & 0 & 1 & 0 & $\frac{2000}{10}$=200\\
+
+$S_{3}$ & $900$ & 2 & 3 & 0 & 0 & 1 & $\frac{900}{3}$=300\\
+
+Z = 0 & $Z_{j}$  & 0 & 0 & 0 & 0 & 0 &  \\
+\bottomrule
+
+   & $Z_{j}-C_{j}$ & -40 & -100 & 0 & 0 & 0 &  \\
+\end{tabular}
+
+\end{table}\newline
+
+The minimum $Z_{j}-C_{j}$ is -100 and its column index is 2.So, the entering variable is $x_{2}$.\newline
+The minimum ratio is 200 and its row index is 2. So, the leaving basis variable is $s_{2}$.\newline
+$\therefore$ The pivot element is 10.
+
+\end{frame}
+
+\begin{frame}
+
+Entering = $x_{2}$, Departing = $S_{2}$ , Key Element = 10.\newline
+
+$R_{2}(new)$ = $R_{2}(old)/10$\newline
+
+$R_{1}(new)$ = $R_{1}(old)$ - $5R_{1}(new)$\newline
+
+$R_{3}(new)$ = $R_{3}(old)$ - $3R_{2}(new)$\newline
+
+
+    
+\end{frame}
+
+
+
+
+\begin{frame}
+\frametitle{Table}
+\begin{table}
+\begin{tabular}{l l l l l l l l l }
+\toprule
+\textbf{Iteration-2} & \textbf{} & \textbf{$C_{j}$} \textbf{40} & \textbf{100} & \textbf{0} & \textbf{0} & \textbf{0} & \textbf{       }\\
+
+\midrule
+B & $X_{B}$ & $x_{1}$ & $x_{2}$ & $S_{1}$ & $S_{2}$ & $S_{3}$ & Min Ratio=$\frac{X_{B}}{x_{2}}$\\
+$S_{1}$ & $1500$ & 8 & 0 & 1 & $-\frac{1}{2}$ & 0 & \\
+
+$x_{2}$ & $200$ & $\frac{2}{5}$ & 1 & 0 & $\frac{1}{10}$ & 0 & \\
+
+$S_{3}$ & 300 & $\frac{4}{5}$ & 0 & 0 & $-\frac{3}{10}$ & 1 & \\
+
+Z = 20000 & $Z_{j}$  & 40 & 100 & 0 & 10 & 0 &  \\
+\bottomrule
+
+   & $Z_{j}-C_{j}$ & 0 & 0 & 0 & 10 & 0 &  \\
+\end{tabular}
+
+\end{table}\newline
+
+
+\end{frame}
+
+\begin{frame}
+
+Since all $Z_{j}-C_{j} \geq 0$\newline
+
+Hence optimal solution arrived with value of variables as:\newline
+
+$x_{1} = 0,x_{2} = 200$\newline
+
+Max Z = 20000\newline
+
+Min -Z = -20000\newline
+
+Hence, the minimum of  $ f = -40x_{1}-100x_{2}$ subject to the given conditions is -20000
+    
+\end{frame}
+
+
+\begin{frame}[fragile] % Need to use the fragile option when verbatim is used in the slide
+\frametitle{Python Code}
+\begin{example}
+\begin{verbatim}
+   from scipy.optimize import linprog
+
+C = [-40,-100]      #cost function
+A = [[10,5],[4,10],[2,3]]   #Constraint matrix
+B = [2500,2000,900]     #RHS of constraints
+x0_bounds = (0,None)    #making sure x1 and x2 are >=0
+x1_bounds = (0,None)
+#call the lin prog function from the library we imported
+res = linprog(C,A_ub=A,b_ub=B,bounds=(x0_bounds,x1_bounds)
+,options={"disp":True})
+   
+\end{verbatim}
+\end{example}
+\end{frame}
+
+
+
+\begin{frame}
+\Huge{\centerline{The End}}
+\quad \quad\quad \quad \quad Thank You!
+\end{frame}
+
+
+
+
+
+%----------------------------------------------------------------------------------------
+
+\end{document}
