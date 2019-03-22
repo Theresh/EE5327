@@ -1,0 +1,39 @@
+import cvxpy as cp
+
+x11 = cp.Variable()
+x12 = cp.Variable()
+x13 = cp.Variable()
+x14 = cp.Variable()
+x21 = cp.Variable()
+x22 = cp.Variable()
+x23 = cp.Variable()
+x24 = cp.Variable()
+x31 = cp.Variable()
+x32 = cp.Variable()
+x33 = cp.Variable()
+x34 = cp.Variable()
+x41 = cp.Variable()
+x42 = cp.Variable()
+x43 = cp.Variable()
+x44 = cp.Variable()
+constraints = [x11+x12+x13+x14==1,
+               x21+x22+x23+x24==1,
+               x31+x32+x33+x34==1,
+               x41+x42+x43+x44==1,
+               x11+x21+x31+x41==1,
+               x12+x22+x32+x42==1,
+               x13+x23+x33+x43==1,
+               x14+x24+x34+x44==1,
+               x11>=0,x12>=0,x13>=0,x14>=0,
+               x21>=0,x22>=0,x23>=0,x24>=0,
+               x31>=0,x32>=0,x33>=0,x34>=0,
+               x41>=0,x42>=0,x43>=0,x44>=0]
+obj = cp.Minimize(5*x11+3*x12+2*x13+5*x14+
+                  7*x21+9*x22+2*x23+3*x24+
+                  4*x31+2*x32+3*x33+2*x34+
+                  5*x41+7*x42+7*x43+5*x44)
+
+prob = cp.Problem(obj,constraints)
+prob.solve()
+
+print prob.value
